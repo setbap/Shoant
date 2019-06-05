@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import "./App.css";
+import Index from "./components/Pages/Index";
+import Products from "./components/Pages/Products/Index";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import "bootstrap-css-only/css/bootstrap.css";
+import Header from "./components/BaseComponent/Header";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<BrowserRouter>
+			<div className="App">
+				<Header />
+				<Route exact path="/" component={Index} />
+				<Route
+					exact
+					path="/category/:name"
+					render={(props) => (
+						<Redirect to={`${props.location.pathname}/1`} />
+					)}
+				/>
+				<Route path="/category/:pName/:pageInit" component={Products} />
+			</div>
+		</BrowserRouter>
+	);
 }
 
 export default App;
