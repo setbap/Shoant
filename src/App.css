@@ -31,3 +31,23 @@
 		transform: rotate(360deg);
 	}
 }
+
+.brand_gradient {
+	background-color: #4158d0;
+	background-image: linear-gradient(
+		135deg,
+		#4158d0 0%,
+		#c850c0 65%,
+		#fe7a71 100%
+	) !important;
+}
+
+.login-form {
+	max-width: 300px;
+}
+.login-form-forgot {
+	float: right;
+}
+.login-form-button {
+	width: 100%;
+}

@@ -1,17 +1,12 @@
 import React, { useEffect } from "react";
-import { Layout, Menu, Typography, Card, Row, Col, Pagination } from "antd";
-import { query_string } from "../../func/queryString";
+import { Layout, Typography, Card, Row, Col, Pagination } from "antd";
 import SortButtons from "./SortButtons";
-const { Content, Header } = Layout;
+const { Content } = Layout;
 const { Meta } = Card;
 const { Title } = Typography;
 
 const Index = (props) => {
-	const qs = query_string(props.location.search)
-		? query_string(props.location.search)
-		: {};
 	const pageInit = props.match.params.pageInit;
-	const pName = props.match.params.pName;
 
 	useEffect(() => {
 		console.log(Date.now());

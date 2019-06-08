@@ -49,7 +49,7 @@ class Demo extends Component {
 				<TweenOne
 					key="0"
 					animation={{ opacity: 1 }}
-					key="QueueAnim"
+					// key="QueueAnim"
 					type={["bottom", "top"]}
 					delay={1000}
 					style={{
