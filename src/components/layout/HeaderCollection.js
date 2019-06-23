@@ -10,7 +10,7 @@ function HeaderCollection() {
 				justify="space-around"
 				className="col-xs-12 col-lg-8 m-auto col-md-7"
 			>
-				<Link to="content">
+				<Link to="/category/gender/man">
 					<div
 						style={{
 							height: 200,
@@ -18,11 +18,11 @@ function HeaderCollection() {
 					>
 						<BannerCard
 							img="https://i.redd.it/b3esnz5ra34y.jpg"
-							title="My Card"
+							title="Men"
 						/>
 					</div>
 				</Link>
-				<Link to="content">
+				<Link to="/category/gender/woman">
 					<div
 						style={{
 							height: 200,
@@ -30,20 +30,20 @@ function HeaderCollection() {
 					>
 						<BannerCard
 							img="https://i.redd.it/b3esnz5ra34y.jpg"
-							title="My Card"
+							title="Women"
 						/>
 					</div>
 				</Link>
 			</Col>
 
 			<Col className="col-xs-10 col-lg-4  mx-auto my-1 col-md-5 ">
-				<Link to="content">
+				<Link to="/category/gender/kid">
 					<BannerCard
 						style={{
 							height: 400,
 						}}
 						img="https://i.redd.it/b3esnz5ra34y.jpg"
-						title="My Card"
+						title="Kids"
 					/>
 				</Link>
 			</Col>

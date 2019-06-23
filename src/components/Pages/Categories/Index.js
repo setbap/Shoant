@@ -1,36 +1,48 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Layout, Typography, Card, Row, Col, Pagination } from "antd";
-import SortButtons from "./SortButtons";
+import { Link } from "react-router-dom";
+import axios from "axios";
 const { Content } = Layout;
 const { Meta } = Card;
 const { Title } = Typography;
 
 const Index = (props) => {
-	const pageInit = props.match.params.pageInit;
+	// const pageInit = props.match.params.pageInit;
+	const [cats, setCats] = useState([]);
 
 	useEffect(() => {
-		console.log(Date.now());
-		// return () => {
-		// };
-	}, [props.location.search, props.match.params]);
+		axios
+			.get("http://localhost:5000/api/shop/allCategoreis")
+			.then((res) => {
+				// let myopt = res.data.brands.map((item) => {
+				// 	return { value: item._id, label: item.name };
+				// });
+				// setBrands(myopt);
+				setCats(res.data.cat);
+				console.log(res.data.cat);
+			});
+	}, [props.match.params]);
 
-	const testCard = (
-		<Col xs={20} md={7} lg={5}>
-			<Card
-				loading={false}
-				hoverable
-				className="my-2 rounded"
-				cover={
-					<img
-						alt="example"
-						src="https://cdn.pixabay.com/photo/2013/07/13/14/08/apparel-162192_640.png"
-					/>
-				}
-			>
-				<Meta title="some category" description={`pirce:${200}`} />
-			</Card>
+	// useEffect(() => {
+	// 	console.log(Date.now());
+	// 	// return () => {
+	// 	// };
+	// }, [props.location.search, props.match.params]);
+
+	const testCard = cats.map((val) => (
+		<Col key={val._id} xs={20} md={7} lg={5}>
+			<Link to={`/products/category/${val._id}`}>
+				<Card
+					loading={false}
+					hoverable
+					className="my-2 rounded"
+					cover={<img alt="example" src={val.imageUrl} />}
+				>
+					<Meta title={`${val.name} - ${val.gender}`} />
+				</Card>
+			</Link>
 		</Col>
-	);
+	));
 	return (
 		<Layout className="layout">
 			<Content style={{ padding: "0 32px" }}>
@@ -41,7 +53,7 @@ const Index = (props) => {
 						minHeight: 680,
 					}}
 				>
-					<SortButtons path={props} />
+					{/* <SortButtons path={props} /> */}
 					<Col className="my-1 p-1 py-1">
 						<Title
 							level={4}
@@ -55,20 +67,9 @@ const Index = (props) => {
 							className="text-center"
 						>
 							{testCard}
-							{testCard}
-							{testCard}
-							{testCard}
-							{testCard}
-							{testCard}
-							{testCard}
-							{testCard}
-							{testCard}
-							{testCard}
-							{testCard}
-							{testCard}
 						</Row>
 					</Col>
-					<Pagination
+					{/* <Pagination
 						defaultPageSize={12}
 						total={502}
 						defaultCurrent={parseInt(pageInit)}
@@ -80,7 +81,7 @@ const Index = (props) => {
 								`${page}${props.location.search}`,
 							);
 						}}
-					/>
+					/> */}
 					,
 				</div>
 			</Content>

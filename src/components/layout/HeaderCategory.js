@@ -1,25 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import { Typography, Card, Col, Row } from "antd";
 const { Meta } = Card;
 
 const { Title } = Typography;
 function HeaderCategory() {
-	const testCard = (
-		<Col xs={10} md={5} lg={5}>
-			<Card
-				hoverable
-				className="my-2 rounded"
-				cover={
-					<img
-						alt="example"
-						src="https://cdn.pixabay.com/photo/2013/07/13/14/08/apparel-162192_640.png"
-					/>
-				}
-			>
-				<Meta title="some category" />
-			</Card>
+	const [cat, setCat] = useState([]);
+
+	useEffect(() => {
+		axios.get("http://localhost:5000/api/shop/getcatl").then((res) => {
+			// let myopt = res.data.brands.map((item) => {
+			// 	return { value: item._id, label: item.name };
+			// });
+			// setBrands(myopt);
+			setCat(res.data.cat);
+			// console.log(res.data.brands);
+		});
+	}, []);
+
+	const testCard = cat.map((val) => (
+		<Col key={val._id} xs={20} md={7} lg={5}>
+			<Link to={`/products/brand/${val._id}`}>
+				<Card
+					loading={false}
+					hoverable
+					className="my-2 rounded"
+					cover={<img alt="example" src={val.imageUrl} />}
+				>
+					<Meta title={`${val.name} - ${val.gender}`} />
+				</Card>
+			</Link>
 		</Col>
-	);
+	));
 
 	return (
 		<Col className="my-5  shadow-sm p-2 py-4">
@@ -27,9 +40,6 @@ function HeaderCategory() {
 				Some Category
 			</Title>
 			<Row type="flex" justify="space-around" className="text-center">
-				{testCard}
-				{testCard}
-				{testCard}
 				{testCard}
 			</Row>
 		</Col>

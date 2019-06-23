@@ -40,7 +40,7 @@ class Test extends Component {
 				<div> asd6asd</div>
 				<div> asdasd</div>
 				<Footer style={{ textAlign: "center" }}>
-					Ant Design ©2018 Created by Ant UED
+					Create for uni project
 				</Footer>
 			</Layout>
 		);

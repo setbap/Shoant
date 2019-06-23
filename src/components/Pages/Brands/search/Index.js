@@ -11,14 +11,18 @@ const Index = (props) => {
 	const [brands, setBrands] = useState([]);
 
 	useEffect(() => {
-		axios.get("http://localhost:5000/api/shop/allBrands").then((res) => {
-			// let myopt = res.data.brands.map((item) => {
-			// 	return { value: item._id, label: item.name };
-			// });
-			// setBrands(myopt);
-			setBrands(res.data.brands);
-			// console.log(res.data.brands);
-		});
+		axios
+			.post("http://localhost:5000/api/shop/searchBrand", {
+				brandSearch: props.match.params.word,
+			})
+			.then((res) => {
+				// let myopt = res.data.brands.map((item) => {
+				// 	return { value: item._id, label: item.name };
+				// });
+				// setBrands(myopt);
+				setBrands(res.data.brands);
+				// console.log(res.data.brands);
+			});
 	}, [props.match.params]);
 
 	// useEffect(() => {
@@ -36,7 +40,7 @@ const Index = (props) => {
 					className="my-2 rounded"
 					cover={<img alt="example" src={val.imageUrl} />}
 				>
-					<Meta title={`${val.name} - ${val.gender}`} />
+					<Meta title={`${val.name}`} />
 				</Card>
 			</Link>
 		</Col>

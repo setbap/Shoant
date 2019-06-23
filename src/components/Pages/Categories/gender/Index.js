@@ -8,17 +8,21 @@ const { Title } = Typography;
 
 const Index = (props) => {
 	// const pageInit = props.match.params.pageInit;
-	const [brands, setBrands] = useState([]);
+	const [cats, setCats] = useState([]);
 
 	useEffect(() => {
-		axios.get("http://localhost:5000/api/shop/allBrands").then((res) => {
-			// let myopt = res.data.brands.map((item) => {
-			// 	return { value: item._id, label: item.name };
-			// });
-			// setBrands(myopt);
-			setBrands(res.data.brands);
-			// console.log(res.data.brands);
-		});
+		axios
+			.post("http://localhost:5000/api/shop/searchCategoryByGender", {
+				gender: props.match.params.gender,
+			})
+			.then((res) => {
+				// let myopt = res.data.brands.map((item) => {
+				// 	return { value: item._id, label: item.name };
+				// });
+				// setBrands(myopt);
+				setCats(res.data.cat);
+				console.log(res.data.cat);
+			});
 	}, [props.match.params]);
 
 	// useEffect(() => {
@@ -27,9 +31,9 @@ const Index = (props) => {
 	// 	// };
 	// }, [props.location.search, props.match.params]);
 
-	const testCard = brands.map((val) => (
+	const testCard = cats.map((val) => (
 		<Col key={val._id} xs={20} md={7} lg={5}>
-			<Link to={`/products/brand/${val._id}`}>
+			<Link to={`/products/category/${val._id}`}>
 				<Card
 					loading={false}
 					hoverable

@@ -3,11 +3,12 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
-		"antd": "^3.18.2",
+		"antd": "^3.19.3",
 		"axios": "^0.19.0",
 		"babel-plugin-import": "^1.11.2",
 		"bootstrap-css-only": "^4.3.1",
 		"customize-cra": "^0.2.12",
+		"jwt-decode": "^2.2.0",
 		"less": "^3.9.0",
 		"less-loader": "^5.0.0",
 		"rc-animate": "^2.8.2",
@@ -23,7 +24,9 @@
 		"react-router": "^5.0.0",
 		"react-router-dom": "^5.0.0",
 		"react-scripts": "3.0.1",
-		"redux": "^4.0.1"
+		"reactstrap": "^8.0.0",
+		"redux": "^4.0.1",
+		"redux-thunk": "^2.3.0"
 	},
 	"scripts": {
 		"start": "react-app-rewired start",
