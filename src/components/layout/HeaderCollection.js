@@ -10,7 +10,7 @@ function HeaderCollection() {
 				justify="space-around"
 				className="col-xs-12 col-lg-8 m-auto col-md-7"
 			>
-				<Link to="/category/gender/man">
+				<Link to="/category/gender/men">
 					<div
 						style={{
 							height: 200,
@@ -22,7 +22,7 @@ function HeaderCollection() {
 						/>
 					</div>
 				</Link>
-				<Link to="/category/gender/woman">
+				<Link to="/category/gender/women">
 					<div
 						style={{
 							height: 200,
