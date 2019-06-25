@@ -17,7 +17,7 @@ function HeaderCollection() {
 						}}
 					>
 						<BannerCard
-							img="https://i.redd.it/b3esnz5ra34y.jpg"
+							img="https://www.banimode.com/modules/baniPage/upload/mardane980313.jpg"
 							title="Men"
 						/>
 					</div>
@@ -29,7 +29,7 @@ function HeaderCollection() {
 						}}
 					>
 						<BannerCard
-							img="https://i.redd.it/b3esnz5ra34y.jpg"
+							img="https://www.banimode.com/modules/baniPage/upload/zananee980313.jpg"
 							title="Women"
 						/>
 					</div>
@@ -42,7 +42,7 @@ function HeaderCollection() {
 						style={{
 							height: 400,
 						}}
-						img="https://i.redd.it/b3esnz5ra34y.jpg"
+						img="https://www.banimode.com/modules/baniPage/upload/bachegane980313.jpg"
 						title="Kids"
 					/>
 				</Link>
