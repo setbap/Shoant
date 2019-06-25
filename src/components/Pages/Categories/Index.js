@@ -59,7 +59,7 @@ const Index = (props) => {
 							level={4}
 							className="text-muted border-bottom-0 "
 						>
-							Some Category
+							Category
 						</Title>
 						<Row
 							type="flex"

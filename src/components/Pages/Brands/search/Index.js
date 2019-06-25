@@ -61,7 +61,7 @@ const Index = (props) => {
 							level={4}
 							className="text-muted border-bottom-0 "
 						>
-							Some Category
+							Search in Brand:{props.match.params.word}
 						</Title>
 						<Row
 							type="flex"

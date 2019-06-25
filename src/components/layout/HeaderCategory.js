@@ -23,7 +23,7 @@ function HeaderCategory() {
 
 	const testCard = cat.map((val) => (
 		<Col key={val._id} xs={20} md={7} lg={5}>
-			<Link to={`/products/brand/${val._id}`}>
+			<Link to={`/products/category/${val._id}`}>
 				<Card
 					loading={false}
 					hoverable

@@ -26,6 +26,9 @@ const Index = (props) => {
 			<Menu.Item key="5">
 				<Link to="/search">search</Link>
 			</Menu.Item>
+			<Menu.Item key="5">
+				<Link to="/products/all">all products</Link>
+			</Menu.Item>
 		</Menu>
 	);
 

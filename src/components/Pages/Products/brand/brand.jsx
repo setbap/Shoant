@@ -91,7 +91,7 @@ const Index = (props) => {
 								level={4}
 								className="text-muted border-bottom-0 "
 							>
-								Brnad
+								Brand
 							</Title>
 							<Row
 								type="flex"
