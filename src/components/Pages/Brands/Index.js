@@ -11,14 +11,16 @@ const Index = (props) => {
 	const [brands, setBrands] = useState([]);
 
 	useEffect(() => {
-		axios.get("http://localhost:5000/api/shop/allBrands").then((res) => {
-			// let myopt = res.data.brands.map((item) => {
-			// 	return { value: item._id, label: item.name };
-			// });
-			// setBrands(myopt);
-			setBrands(res.data.brands);
-			// console.log(res.data.brands);
-		});
+		axios
+			.get("https://shonode.herokuapp.com/api/shop/allBrands")
+			.then((res) => {
+				// let myopt = res.data.brands.map((item) => {
+				// 	return { value: item._id, label: item.name };
+				// });
+				// setBrands(myopt);
+				setBrands(res.data.brands);
+				// console.log(res.data.brands);
+			});
 	}, [props.match.params]);
 
 	// useEffect(() => {

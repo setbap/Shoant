@@ -12,7 +12,7 @@ const Index = (props) => {
 	const [prodsofcat, setProdsofcat] = useState([]);
 	useEffect(() => {
 		axios
-			.post("http://localhost:5000/api/shop/findProductByCat", {
+			.post("https://shonode.herokuapp.com/api/shop/findProductByCat", {
 				catId: props.match.params.word,
 			})
 			.then((res) => {

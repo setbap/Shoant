@@ -8,14 +8,16 @@ const { Title } = Typography;
 function HeaderCategory() {
 	const [brand, setBrand] = useState([]);
 	useEffect(() => {
-		axios.get("http://localhost:5000/api/shop/getbrandl").then((res) => {
-			// let myopt = res.data.brands.map((item) => {
-			// 	return { value: item._id, label: item.name };
-			// });
-			// setBrands(myopt);
-			setBrand(res.data.brand);
-			// console.log(res.data.brands);
-		});
+		axios
+			.get("https://shonode.herokuapp.com/api/shop/getbrandl")
+			.then((res) => {
+				// let myopt = res.data.brands.map((item) => {
+				// 	return { value: item._id, label: item.name };
+				// });
+				// setBrands(myopt);
+				setBrand(res.data.brand);
+				// console.log(res.data.brands);
+			});
 	}, []);
 
 	const testCard = brand.map((val) => (
@@ -27,7 +29,7 @@ function HeaderCategory() {
 					className="my-2 rounded"
 					cover={<img alt="example" src={val.imageUrl} />}
 				>
-					<Meta title={`${val.name} - ${val.gender}`} />
+					<Meta title={`${val.name} `} />
 				</Card>
 			</Link>
 		</Col>

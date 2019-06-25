@@ -12,7 +12,7 @@ const Index = (props) => {
 	const [prodsofbrand, setProdsofbrand] = useState([]);
 	useEffect(() => {
 		axios
-			.post("http://localhost:5000/api/shop/findProductByBrand", {
+			.post("https://shonode.herokuapp.com/api/shop/findProductByBrand", {
 				brandId: props.match.params.word,
 			})
 			.then((res) => {

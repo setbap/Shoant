@@ -12,9 +12,12 @@ const Index = (props) => {
 
 	useEffect(() => {
 		axios
-			.post("http://localhost:5000/api/shop/searchCategoryByGender", {
-				gender: props.match.params.gender,
-			})
+			.post(
+				"https://shonode.herokuapp.com/api/shop/searchCategoryByGender",
+				{
+					gender: props.match.params.gender,
+				},
+			)
 			.then((res) => {
 				// let myopt = res.data.brands.map((item) => {
 				// 	return { value: item._id, label: item.name };

@@ -11,7 +11,7 @@ const Profile = (props) => {
 
 	useEffect(() => {
 		axios
-			.get("http://localhost:5000/api/shop/getMyCart")
+			.get("https://shonode.herokuapp.com/api/shop/getMyCart")
 			.then((res) => {
 				// let myopt = res.data.brands.map((item) => {
 				// 	return { value: item._id, label: item.name };
@@ -27,7 +27,9 @@ const Profile = (props) => {
 	}, []);
 	const incItem = (pid) => {
 		axios
-			.post("http://localhost:5000/api/shop/incCartItem", { prodId: pid })
+			.post("https://shonode.herokuapp.com/api/shop/incCartItem", {
+				prodId: pid,
+			})
 			.then((res) => {
 				// let myopt = res.data.brands.map((item) => {
 				// 	return { value: item._id, label: item.name };
@@ -49,7 +51,9 @@ const Profile = (props) => {
 
 	const decItem = (pid) => {
 		axios
-			.post("http://localhost:5000/api/shop/decCartItem", { prodId: pid })
+			.post("https://shonode.herokuapp.com/api/shop/decCartItem", {
+				prodId: pid,
+			})
 			.then((res) => {
 				// let myopt = res.data.brands.map((item) => {
 				// 	return { value: item._id, label: item.name };
@@ -64,7 +68,7 @@ const Profile = (props) => {
 
 	const delItem = (pid) => {
 		axios
-			.post("http://localhost:5000/api/shop/deleteCartItem", {
+			.post("https://shonode.herokuapp.com/api/shop/deleteCartItem", {
 				prodId: pid,
 			})
 			.then((res) => {

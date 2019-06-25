@@ -32,7 +32,10 @@ const NormalCheckoutForm = (props) => {
 		props.form.validateFields((err, values) => {
 			if (!err) {
 				axios
-					.post("http://localhost:5000/api/shop/createOrder", values)
+					.post(
+						"https://shonode.herokuapp.com/api/shop/createOrder",
+						values,
+					)
 					.then((res) => {
 						window.location.href = "/profile/order";
 					})

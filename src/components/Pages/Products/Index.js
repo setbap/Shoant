@@ -14,7 +14,7 @@ const Index = (props) => {
 
 	useEffect(() => {
 		axios
-			.post("http://localhost:5000/api/shop/getproducts", {
+			.post("https://shonode.herokuapp.com/api/shop/getproducts", {
 				page: pageInit,
 			})
 			.then((res) => {

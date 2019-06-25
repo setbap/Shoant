@@ -12,7 +12,7 @@ const Index = (props) => {
 
 	useEffect(() => {
 		axios
-			.get("http://localhost:5000/api/shop/allCategoreis")
+			.get("https://shonode.herokuapp.com/api/shop/allCategoreis")
 			.then((res) => {
 				// let myopt = res.data.brands.map((item) => {
 				// 	return { value: item._id, label: item.name };

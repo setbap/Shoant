@@ -51,9 +51,12 @@ class Product extends Component {
 		setTimeout(() => {
 			const pid = this.props.match.params.pid;
 			axios
-				.post("http://localhost:5000/api/shop/getsingleproduct", {
-					id: pid,
-				})
+				.post(
+					"https://shonode.herokuapp.com/api/shop/getsingleproduct",
+					{
+						id: pid,
+					},
+				)
 				.then((res) => {
 					this.setState({
 						loading: false,
@@ -123,7 +126,7 @@ class Product extends Component {
 		console.log(prodId);
 
 		axios
-			.post("http://localhost:5000/api/shop/iWant", {
+			.post("https://shonode.herokuapp.com/api/shop/iWant", {
 				prodId: prodId,
 			})
 			.then((res) => {
@@ -152,7 +155,7 @@ class Product extends Component {
 		console.log(prodId);
 
 		axios
-			.post("http://localhost:5000/api/shop/addToCart", {
+			.post("https://shonode.herokuapp.com/api/shop/addToCart", {
 				prodId: prodId,
 			})
 			.then((res) => {

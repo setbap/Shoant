@@ -12,7 +12,7 @@ const Index = (props) => {
 
 	useEffect(() => {
 		axios
-			.post("http://localhost:5000/api/shop/searchCategory", {
+			.post("https://shonode.herokuapp.com/api/shop/searchCategory", {
 				categorySearch: props.match.params.word,
 			})
 			.then((res) => {

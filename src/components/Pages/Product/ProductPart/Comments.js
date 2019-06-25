@@ -22,7 +22,7 @@ class Comments extends Component {
 	postComment = () => {
 		if (this.props.auth.isAuth) {
 			axios
-				.post("http://localhost:5000/api/shop/comment", {
+				.post("https://shonode.herokuapp.com/api/shop/comment", {
 					prodId: this.props.pid,
 					title: this.state.title,
 					content: this.state.content,

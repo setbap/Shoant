@@ -4,7 +4,7 @@ import axios from "axios";
 export const addProd = (newProd, history) => (dispatch) => {
 	dispatch(clearErrors());
 	axios
-		.post("http://localhost:5000/api/shop/addproduct", newProd)
+		.post("https://shonode.herokuapp.com/api/shop/addproduct", newProd)
 		.then((res) => {
 			history.push("/");
 		})
@@ -40,7 +40,7 @@ export const addProd = (newProd, history) => (dispatch) => {
 export const getBrands = () => (dispatch) => {
 	dispatch(clearErrors());
 	axios
-		.get("http://localhost:5000/api/shop/allBrands")
+		.get("https://shonode.herokuapp.com/api/shop/allBrands")
 		.then((res) =>
 			dispatch({
 				type: GET_BRAND,
@@ -58,7 +58,7 @@ export const getBrands = () => (dispatch) => {
 export const getCats = () => (dispatch) => {
 	dispatch(clearErrors());
 	axios
-		.get("http://localhost:5000/api/shop/allCategoreis")
+		.get("https://shonode.herokuapp.com/api/shop/allCategoreis")
 		.then((res) =>
 			dispatch({
 				type: GET_CAT,

@@ -5,7 +5,7 @@ import stth from "../util/setTokenToHeader";
 
 export const reguser = (newUser, history) => (dispatch) => {
 	axios
-		.post("http://localhost:5000/api/user/register", newUser)
+		.post("https://shonode.herokuapp.com/api/user/register", newUser)
 		.then((res) => {
 			history.push("/validate-email");
 		})
@@ -38,7 +38,7 @@ export const reguser = (newUser, history) => (dispatch) => {
 
 export const validate_email = (id, history) => (dispatch) => {
 	axios
-		.post("http://localhost:5000/api/user/register/validate", id)
+		.post("https://shonode.herokuapp.com/api/user/register/validate", id)
 		.then((res) => {
 			history.push("/login");
 		})
@@ -71,7 +71,10 @@ export const validate_email = (id, history) => (dispatch) => {
 
 export const forget_pass = (email, history) => (dispatch) => {
 	axios
-		.post("http://localhost:5000/api/user/register/reset-password", email)
+		.post(
+			"https://shonode.herokuapp.com/api/user/register/reset-password",
+			email,
+		)
 		.then((res) => {
 			history.push("/change-password");
 		})
@@ -105,7 +108,7 @@ export const forget_pass = (email, history) => (dispatch) => {
 export const new_pass = (data, history) => (dispatch) => {
 	axios
 		.post(
-			"http://localhost:5000/api/user/register/reset-password/new-password",
+			"https://shonode.herokuapp.com/api/user/register/reset-password/new-password",
 			data,
 		)
 		.then((res) => {
@@ -140,7 +143,7 @@ export const new_pass = (data, history) => (dispatch) => {
 
 export const loginuser = (data, history) => (dispatch) => {
 	axios
-		.post("http://localhost:5000/api/user/login", data)
+		.post("https://shonode.herokuapp.com/api/user/login", data)
 		.then((res) => {
 			let { secret } = res.data;
 			localStorage.setItem("jwtToken", secret);

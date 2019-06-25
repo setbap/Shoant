@@ -12,7 +12,7 @@ const Profile = (props) => {
 
 	useEffect(() => {
 		axios
-			.get("http://localhost:5000/api/shop/getOrders")
+			.get("https://shonode.herokuapp.com/api/shop/getOrders")
 			.then((res) => {
 				// let myopt = res.data.brands.map((item) => {
 				// 	return { value: item._id, label: item.name };
@@ -30,7 +30,7 @@ const Profile = (props) => {
 
 	const downloadOrder = (fid) => {
 		// axios
-		// 	.post("http://localhost:5000/api/shop/getFactore", { fid: fid })
+		// 	.post("https://shonode.herokuapp.com/api/shop/getFactore", { fid: fid })
 		// 	.then((res) => {
 		// 		// let myopt = res.data.brands.map((item) => {
 		// 		// 	return { value: item._id, label: item.name };
@@ -47,7 +47,7 @@ const Profile = (props) => {
 		// 	});
 		axios
 			.post(
-				"http://localhost:5000/api/shop/getFactore",
+				"https://shonode.herokuapp.com/api/shop/getFactore",
 				{ fid: fid },
 				{
 					responseType: "blob",
