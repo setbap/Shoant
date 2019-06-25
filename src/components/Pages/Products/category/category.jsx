@@ -38,7 +38,7 @@ const Index = (props) => {
 				>
 					<Meta
 						title={val.title}
-						description={`${val.price}$ ,     ${val.brand.name} `}
+						description={`${val.price}$ ,     ${val.brand?val.brand.name:"" } `}
 					/>
 				</Card>
 			</Link>
