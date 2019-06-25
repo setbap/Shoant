@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ProfileDrawer from "../../layout/ProfileDrawer";
-import "antd/dist/antd.css";
+import CheckoutForm from "./CheckOutForm";
 import { Layout, Row, Col, Button, Icon } from "antd";
 import axios from "axios";
 
@@ -19,15 +19,68 @@ const Profile = (props) => {
 				// setBrands(myopt);
 				setMyCart(res.data.products);
 
-				// console.log(res.data.brands);
+				console.log(res.data.products);
 			})
 			.catch((err) => {
 				console.log("cart");
 			});
 	}, []);
+	const incItem = (pid) => {
+		axios
+			.post("http://localhost:5000/api/shop/incCartItem", { prodId: pid })
+			.then((res) => {
+				// let myopt = res.data.brands.map((item) => {
+				// 	return { value: item._id, label: item.name };
+				// });
+				// setBrands(myopt);
+				setMyCart(res.data.products);
+			})
+			.catch((err) => {
+				console.log("cart");
+			});
+	};
+	const calcTotalPrice = (data) => {
+		let sum = 0;
+		MyCart.forEach((item) => {
+			sum += item.quantity * +item.productId.price;
+		});
+		return sum;
+	};
 
-	const items = MyCart.map((val) => (
-		<Row key={val._id} className="my-3">
+	const decItem = (pid) => {
+		axios
+			.post("http://localhost:5000/api/shop/decCartItem", { prodId: pid })
+			.then((res) => {
+				// let myopt = res.data.brands.map((item) => {
+				// 	return { value: item._id, label: item.name };
+				// });
+				// setBrands(myopt);
+				setMyCart(res.data.products);
+			})
+			.catch((err) => {
+				console.log("cart");
+			});
+	};
+
+	const delItem = (pid) => {
+		axios
+			.post("http://localhost:5000/api/shop/deleteCartItem", {
+				prodId: pid,
+			})
+			.then((res) => {
+				// let myopt = res.data.brands.map((item) => {
+				// 	return { value: item._id, label: item.name };
+				// });
+				// setBrands(myopt);
+				setMyCart(res.data.products);
+			})
+			.catch((err) => {
+				console.log("cart");
+			});
+	};
+
+	const items = MyCart.map((val, index) => (
+		<Row key={index} className="my-3">
 			<Col
 				span={20}
 				offset={2}
@@ -36,7 +89,12 @@ const Profile = (props) => {
 					backgroundColor: "#f0f2f5",
 				}}
 			>
-				<Row type="flex" justify="space-around" className=" rounded">
+				<Row
+					type="flex"
+					key={val.productId._id}
+					justify="space-around"
+					className=" rounded"
+				>
 					<Col xs={12} md={6}>
 						<img
 							alt="my nadombe"
@@ -64,17 +122,32 @@ const Profile = (props) => {
 						</span>
 					</Col>
 					<Col xs={16} md={6} className="my-auto">
-						<Button type="dashed" shape="circle" size="large">
+						<Button
+							type="dashed"
+							onClick={() => incItem(val.productId._id)}
+							shape="circle"
+							size="large"
+						>
 							<Icon type="plus" />
 						</Button>
 						<Button shape="circle" size={"large"}>
 							{val.quantity}
 						</Button>
-						<Button type="dashed" shape="circle" size="large">
+						<Button
+							type="dashed"
+							onClick={() => decItem(val.productId._id)}
+							shape="circle"
+							size="large"
+						>
 							<Icon type="minus" />
 						</Button>
 					</Col>
-					<Col xs={8} md={3} className="my-auto ">
+					<Col
+						xs={8}
+						md={3}
+						onClick={() => delItem(val.productId._id)}
+						className="my-auto "
+					>
 						<Button type="dashed" shape="circle" size="large">
 							<Icon type="delete" />
 						</Button>
@@ -92,7 +165,7 @@ const Profile = (props) => {
 	return (
 		<>
 			<Layout>
-				<ProfileDrawer activeNumber="2" />
+				<ProfileDrawer activeNumber="4" />
 
 				<Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
 					<div
@@ -104,9 +177,16 @@ const Profile = (props) => {
 					>
 						{items}
 					</div>
+					{calcTotalPrice(MyCart) ? (
+						<CheckoutForm price={calcTotalPrice(MyCart)} />
+					) : (
+						<>you must add some thing first</>
+					)}
 				</Content>
 			</Layout>
-			<Footer style={{ textAlign: "center" }}>uni project</Footer>
+			<Footer style={{ textAlign: "center" }}>
+				uni project total price : {calcTotalPrice(MyCart)}
+			</Footer>
 		</>
 	);
 };

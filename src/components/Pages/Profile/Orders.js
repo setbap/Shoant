@@ -1,70 +1,97 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProfileDrawer from "../../layout/ProfileDrawer";
 import "antd/dist/antd.css";
 import { Layout, Row, Col, Button, Icon } from "antd";
-
-const CardItem = () => (
-	<Row className="my-3">
-		<Col
-			span={20}
-			offset={2}
-			className="bg-grey rounded py-2"
-			style={{
-				backgroundColor: "#f0f2f5",
-			}}
-		>
-			<Row type="flex" justify="space-around" className=" rounded">
-				<Col xs={12} md={6}>
-					<img
-						alt="my nadombe"
-						src="https://images.unsplash.com/photo-1547491652-77d1920c5616?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-						height="128px"
-						width="128px"
-						className="p-3 rounded-circle"
-					/>{" "}
-				</Col>
-				<Col xs={12} md={6} className="my-auto text-center text-muted">
-					<small className="text-info font-weight-bold">
-						#12341234rewq
-					</small>
-					<br />
-					<span>
-						<small>p-color</small>
-					</span>
-					<br />
-					<span>
-						<small>p-size</small>
-					</span>
-				</Col>
-				<Col xs={16} md={6} className="my-auto">
-					<Button type="dashed" shape="circle" size="large">
-						<Icon type="plus" />
-					</Button>
-					<Button shape="circle" size={"large"}>
-						4
-					</Button>
-					<Button type="dashed" shape="circle" size="large">
-						<Icon type="minus" />
-					</Button>
-				</Col>
-				<Col xs={8} md={3} className="my-auto ">
-					<Button type="dashed" shape="circle" size="large">
-						<Icon type="delete" />
-					</Button>
-				</Col>
-				<Col xs={12} md={3} className="my-auto">
-					<span className="text-muted lead font-weight-bold">
-						800$
-					</span>
-				</Col>
-			</Row>
-		</Col>
-	</Row>
-);
-
+import axios from "axios";
+import { List, Typography } from "antd";
+import { saveAs } from "file-saver";
 const { Content, Footer } = Layout;
 
 const Profile = (props) => {
+	const [orders, setOrders] = useState([]);
+
+	useEffect(() => {
+		axios
+			.get("http://localhost:5000/api/shop/getOrders")
+			.then((res) => {
+				// let myopt = res.data.brands.map((item) => {
+				// 	return { value: item._id, label: item.name };
+				// });
+				// setBrands(myopt);
+				// setMyCart(res.data.products);
+
+				console.log(res.data);
+				setOrders(res.data);
+			})
+			.catch((err) => {
+				console.log("cart");
+			});
+	}, []);
+
+	const downloadOrder = (fid) => {
+		// axios
+		// 	.post("http://localhost:5000/api/shop/getFactore", { fid: fid })
+		// 	.then((res) => {
+		// 		// let myopt = res.data.brands.map((item) => {
+		// 		// 	return { value: item._id, label: item.name };
+		// 		// });
+		// 		// setBrands(myopt);
+		// 		// setMyCart(res.data.products);
+		// 		console.log("down");
+
+		// 		// console.log(res.data);
+		// 		// setOrders(res.data);
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log("err in factore");
+		// 	});
+		axios
+			.post(
+				"http://localhost:5000/api/shop/getFactore",
+				{ fid: fid },
+				{
+					responseType: "blob",
+				},
+			)
+			.then((res) => {
+				const pdfBlob = new Blob([res.data], {
+					type: "application/pdf",
+				});
+				saveAs(pdfBlob, "generatedDocument.pdf");
+			});
+	};
+
+	const MyOrder = orders.map((order) => (
+		<List
+			key={order._id}
+			className="my-4"
+			header={
+				<div className="text-info">
+					{` this order sended to ${order.name}  ${
+						order.lastname
+					} and  ${order.deliver ? "delivered" : "not delivered"}`}
+					<Button onClick={() => downloadOrder(order._id)}>
+						dwonload id
+					</Button>
+				</div>
+			}
+			footer={
+				<div className="text-info">{`send to city ${
+					order.city
+				} , state ${order.state} and address   ${order.address}`}</div>
+			}
+			bordered
+			dataSource={order.items}
+			renderItem={(item) => (
+				<List.Item>
+					name:{item.product.title}-price:{item.product.price} - size:
+					{item.product.size}- color:{item.product.color}- material:
+					{item.product.material}- quantity:{item.quantity}
+				</List.Item>
+			)}
+		/>
+	));
+
 	return (
 		<>
 			<Layout>
@@ -78,10 +105,8 @@ const Profile = (props) => {
 							textAlign: "center",
 						}}
 					>
-						{CardItem()}
-						{CardItem()}
-						{CardItem()}
-						{CardItem()}
+						<h3 className="text-primary">your orders</h3>
+						{MyOrder}
 					</div>
 				</Content>
 			</Layout>

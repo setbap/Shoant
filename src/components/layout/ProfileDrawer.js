@@ -64,7 +64,7 @@ const ProfileDrawer = ({ activeNumber }) => {
 								</Link>
 							</span>
 						</Menu.Item>
-						<Menu.Item key="2">
+						<Menu.Item key="4">
 							<Icon type="video-camera" />
 							<span>
 								<Link

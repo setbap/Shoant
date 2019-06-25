@@ -34,6 +34,9 @@ const Index = (props) => {
 			<Menu.Item key="1" onClick={() => props.logoutuser()}>
 				logout
 			</Menu.Item>
+			<Menu.Item key="2">
+				<Link to="/profile/cart">Cart</Link>
+			</Menu.Item>
 			<Menu.Item key="3">
 				<Link to="/category/all">all categories</Link>
 			</Menu.Item>
@@ -47,6 +50,10 @@ const Index = (props) => {
 				<Icon type="search" />
 				<Link to="/search">search</Link>
 			</Menu.Item>
+			<Menu.Item key="7">
+				<Icon type="user" />
+				<Link to="/profile">profile</Link>
+			</Menu.Item>
 		</Menu>
 	);
 
@@ -54,18 +61,8 @@ const Index = (props) => {
 		<Header className="d-flex text-light justify-content-between">
 			<Link to="/">
 				<span className="navbar-brand mb-0 h1">Shonod admin</span>
-
-				{props.auth.isAuth ? (
-					// <Avatar
-					// 	src={
-					// 		"https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-					// 	}
-					// />
-					<>avatr</>
-				) : (
-					<></>
-				)}
 			</Link>
+
 			<Popover
 				overlayClassName="popover-menu"
 				placement="bottomRight"
